@@ -89,6 +89,7 @@ function addRoutine(event) {
     saveRoutines();
     resetForm();
     populateRoutines();
+    updateProgressBar();
     routineFormSection.style.display = "none";
   }
 }
@@ -113,7 +114,7 @@ function deleteRoutine(index) {
     routines.splice(index, 1);
     saveRoutines();
     populateRoutines();
-	  //  updateAnalytics();
+    updateProgressBar();
   }
 }
 
@@ -141,32 +142,14 @@ document.addEventListener("click", () => {
   });
 });
 
-// Weekly and Monthly Summary
-function updateAnalytics() {
-  const totalTasks = routines.reduce((sum, routine) => sum + routine.tasks.length, 0);
-  const completedTasks = routines.reduce(
-    (sum, routine) =>
-      sum + routine.tasks.filter((task) => task.completed).length,
-    0
-  );
-  const percentage = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
-  document.getElementById("weeklySummary").innerText = `This week: ${percentage}% tasks completed`;
-  document.getElementById("monthlySummary").innerText = `This month: ${percentage}% tasks completed`;
-}
 
 // Event Listeners
 addRoutineFab.addEventListener("click", () => {
   resetForm();
   routineFormSection.style.display = "block";
 });
-/*
-toggleStatsFab.addEventListener("click", () => {
-  const isHidden = analyticsSection.style.display === "none";
-  analyticsSection.style.display = isHidden ? "block" : "none";
-  if (isHidden) updateAnalytics();
-}); 
-*/
+
 document
   .getElementById("saveRoutine")
   .addEventListener("click", addRoutine);
@@ -244,6 +227,87 @@ function triggerFunctionAtSpecificTime() {
         }, 24 * 60 * 60 * 1000);  // 24 hours in milliseconds
     }, delay);
 }
+
+
+
+
+// Export routines to JSON
+function exportRoutines() {
+  // Convert routines array to JSON string
+  const dataStr = JSON.stringify(routines, null, 2);
+
+  // Create a Blob and download it as a file
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  // Create a temporary link element to trigger download
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "routines.json"; // File name for export
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+// Import routines from JSON
+function importRoutines(event) {
+  // Access the uploaded file
+  const file = event.target.files[0];
+  if (!file) {
+    alert("No file selected for import.");
+    return;
+  }
+
+  // Read the file as text
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    try {
+      const importedData = JSON.parse(e.target.result);
+
+      // Validate the imported data structure
+      if (Array.isArray(importedData) && importedData.every(validateRoutine)) {
+        routines = importedData; // Replace current routines with imported data
+          
+		populateRoutines(); // Re-render the UI
+		updateProgressBar();
+        alert("Routines imported successfully!");
+      } else {
+        throw new Error("Invalid data format.");
+      }
+    } catch (error) {
+      alert("Failed to import routines. Ensure the file format is correct.");
+      console.error(error);
+    }
+  };
+  reader.readAsText(file);
+}
+
+// Validate routine structure
+function validateRoutine(routine) {
+  return (
+    typeof routine.name === "string" &&
+    Array.isArray(routine.tasks) &&
+    routine.tasks.every(task => typeof task.name === "string" && typeof task.completed === "boolean")
+  );
+}
+
+// Add event listeners for export and import buttons
+document.getElementById("exportBtn").addEventListener("click", exportRoutines);
+document.getElementById("importInput").addEventListener("change", importRoutines);
+
+
+
+// Toggle import/export menu visibility
+document.getElementById("toggleMenu").addEventListener("click", () => {
+  const menu = document.getElementById("importExportMenu");
+  if (menu.style.display === "none" || !menu.style.display) {
+    menu.style.display = "flex"; // Show menu
+  } else {
+    menu.style.display = "none"; // Hide menu
+  }
+});
+
 
 
 
