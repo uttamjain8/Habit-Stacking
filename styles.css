@@ -1,20 +1,21 @@
     /* Define default (light mode) theme */
     :root {
-      --background-color: #ffffff;
-      --text-color: #000000;
-      --button-bg: #4CAF50;
-      --button-hover-bg: #45a049;
-      --button-text-color: white;
+           --background-color: #000000; /* AMOLED compatible background */
+      --text-color: #ffffff;
+      --button-bg: #9e9e9e;
+      --button-hover-bg: #757575;
+      --button-text-color: #000000;
       --button-border-radius: 5px;
     }
 
     /* Dark mode variables */
     [data-theme="dark"] {
-      --background-color: #000000; /* AMOLED compatible background */
-      --text-color: #ffffff;
-      --button-bg: #9e9e9e;
-      --button-hover-bg: #757575;
-      --button-text-color: #000000;
+        --background-color: #ffffff;
+      --text-color: #000000;
+      --button-bg: #4CAF50;
+      --button-hover-bg: #45a049;
+      --button-text-color: white;
+
     }
 
 
@@ -116,7 +117,7 @@ h2 {
 
 .routine ul li.completed {
   text-decoration: line-through;
-  color: #999;
+  color: green;
 }
 
 /* Three-Dot Menu */
