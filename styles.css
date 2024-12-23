@@ -168,9 +168,9 @@ h2 {
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  border-radius: 25%;
+  width: 45px;
+  height: 35px;
   font-size: 1.5em;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -179,3 +179,50 @@ h2 {
 .fab:hover {
   background-color: #45a049;
 }
+
+
+
+/* General Form Styling */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.routine-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+
+
+input[type="text"],
+textarea {
+  width: 94%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #007bff;
+    background-color: #f4f4f9;
+}
+
+textarea {
+  resize: none;
+}
+
+
+
