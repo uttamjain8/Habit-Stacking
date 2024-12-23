@@ -22,15 +22,26 @@
     <!-- Add/Edit Routine Form -->
     <section id="routineForm" style="display: none;">
       <h2 id="formTitle">Add Routine</h2>
-      <form>
-        <input type="hidden" id="routineId">
-        <label for="routineName">Routine Name:</label>
-        <input type="text" id="routineName" required>
-        <label for="tasks">Checklist Items (comma-separated):</label>
-        <textarea id="tasks" rows="3"></textarea>
-        <button type="submit" id="saveRoutine" class="primary-btn">Save</button>
-        <button type="button" id="cancelRoutine" class="secondary-btn">Cancel</button>
-      </form>
+<div class="form-container">
+  <form class="routine-form">
+    <input type="hidden" id="routineId">
+    
+    <div class="form-group">
+      <label for="routineName">Routine Name:</label>
+      <input type="text" id="routineName" placeholder="Enter routine name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="tasks">Checklist Items (comma-separated):</label>
+      <textarea id="tasks" rows="3" placeholder="Enter tasks separated by commas"></textarea>
+    </div>
+    
+    <div class="fab-container">
+      <button type="submit" id="saveRoutine" class="fab">✔</button>
+      <button type="button" id="cancelRoutine" class="fab">✖</button>
+    </div>
+  </form>
+</div>
     </section>
     <!-- Analytics Section -->
     <section id="analytics" style="display: none;">
