@@ -43,7 +43,7 @@
   </form>
 </div>
     </section>
-    <!-- Analytics Section -->
+    <!-- Analytics Section 
     <section id="analytics" style="display: none;">
       <h2>Analytics</h2>
       <div id="chart"></div>
@@ -54,12 +54,33 @@
         <p id="monthlySummary">Calculating...</p>
       </div>
     </section>
-    <!-- Floating Action Buttons -->
+    <!-- Floating Action Buttons 
     <div id="fab-container">
       <button id="addRoutineFab" class="fab">📄</button>
      <button id="theme-toggle" class="fab">☾𖤓</button>
-    </div>
+    </div> // Tring to make a menubar with all the options--> 
+	
+<div class="import-export-container">
+  <!-- Database Icon Button -->
+  <button id="toggleMenu" class="menu-icon">
+    <i class="fa fa-bars"></i> <!-- Font Awesome icon -->
+  </button>
 
+  <!-- New Floating Menu -->
+  <div id="importExportMenu" class="import-export-menu">
+    <button id="exportBtn" class="btn">⬆️</button>
+    <label for="importInput" class="btn">
+      ⬇️
+      <input id="importInput" type="file" accept="application/json" style="display: none;">
+    </label>
+	     <button id="theme-toggle" class="btn">☾☼</button>
+	 <button id="addRoutineFab" class="btn">✏️</button>
+
+  </div>
+</div>
+
+
+  
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="script.js"></script>
   
