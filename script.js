@@ -105,11 +105,19 @@ function editRoutine(index) {
 
 // Delete Routine
 function deleteRoutine(index) {
-  routines.splice(index, 1);
-  saveRoutines();
-  populateRoutines();
-//  updateAnalytics();
+  // Display a confirmation alert
+  const userConfirmed = confirm("Are you sure you want to delete this routine?");
+  
+  if (userConfirmed) {
+    // Proceed with deletion if the user confirms
+    routines.splice(index, 1);
+    saveRoutines();
+    populateRoutines();
+	  //  updateAnalytics();
+  }
 }
+
+
 
 // Reset Form
 function resetForm() {
