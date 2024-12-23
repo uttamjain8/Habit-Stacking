@@ -35,20 +35,21 @@ function populateRoutines() {
         </div>
       </div>
       <h3>${routine.name}</h3>
-      <ul>
-        ${routine.tasks
-          .map(
-            (task, taskIndex) => `
-          <li class="${task.completed ? "completed" : ""}">
-            <input type="checkbox" 
-              ${task.completed ? "checked" : ""} 
-              onchange="toggleTask(${index}, ${taskIndex})">
-            ${task.name}
-          </li>
-        `
-          )
-          .join("")}
-      </ul>
+<ul>
+  ${routine.tasks
+    .map(
+      (task, taskIndex) => `
+      <li class="${task.completed ? "completed" : ""}">
+        <input type="checkbox" 
+          id="task-${index}-${taskIndex}" 
+          ${task.completed ? "checked" : ""} 
+          onchange="toggleTask(${index}, ${taskIndex})">
+        <label for="task-${index}-${taskIndex}">${task.name}</label>
+      </li>
+    `
+    )
+    .join("")}
+</ul>
     `;
     routinesDiv.appendChild(routineDiv);
   });
